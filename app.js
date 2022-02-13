@@ -5,16 +5,21 @@ const dueDateBox = document.getElementById("due-date");
 const createButton = document.getElementById("create-button");
 createButton.onclick = onCreateButtonClicked;
 function onCreateButtonClicked() {
-    const desc = descriptionBox.value;
+    const description = descriptionBox.value;
     const priority = priorityBox.value;
-    const date = dueDateBox.value;
+    const dueDate = dueDateBox.value;
     
-    if(desc === "" || priority === "" || date === "") {
+    if(description === "" || priority === "" || dueDate === "") {
         return;
     }
 
-    console.log("got here");
+    let newRow = createNewToDoRow(priority, description, dueDate);
 
+    let toDoTable = document.querySelector('table#to-do-table tbody');
+    toDoTable.appendChild(newRow); 
+}
+
+function createNewToDoRow(priority, description, dueDate) {
     let newRow = document.createElement("tr");
 
     let newColumns = [];
@@ -28,10 +33,10 @@ function onCreateButtonClicked() {
     newColumns[1].innerHTML = priority;
 
     newColumns[2] = document.createElement("td");
-    newColumns[2].innerHTML = desc;
+    newColumns[2].innerHTML = description;
 
     newColumns[3] = document.createElement("td");
-    newColumns[3].innerHTML = date;
+    newColumns[3].innerHTML = dueDate;
 
     newColumns[4] = document.createElement("td");
     let removeButton = document.createElement("button");
@@ -42,8 +47,7 @@ function onCreateButtonClicked() {
 
     newColumns.forEach(col => newRow.appendChild(col));
 
-    let list = document.querySelector('table#to-do-table tbody');
-    list.appendChild(newRow); 
+    return newRow;
 }
 
 function onRemoveButtonClicked() {
@@ -51,14 +55,8 @@ function onRemoveButtonClicked() {
     enclosingRow.remove();
 }
 
-        /*<tr>
-            <td>
-                <input type="checkbox" id="item1">
-            </td>  
-            <td>High</td>
-            <td>Make the App</td>
-            <td>2-15-22</td>
-            <td>
-                <button type="button">Remove</button>
-            </td> 
-          </tr> */
+// Initialize our table with example to-do's
+let toDoTable = document.querySelector('table#to-do-table tbody');
+toDoTable.appendChild(createNewToDoRow("Medium", "Wash dishes", "2022-02-13")); 
+toDoTable.appendChild(createNewToDoRow("Low", "Laundry", "2022-02-14")); 
+toDoTable.appendChild(createNewToDoRow("High", "Get the Kids!!!", "2022-02-14")); 
