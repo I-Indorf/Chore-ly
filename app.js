@@ -41,6 +41,7 @@ function createNewToDoRow(priority, description, dueDate) {
     newColumns[4] = document.createElement("td");
     let removeButton = document.createElement("button");
     removeButton.setAttribute("type", "button");
+    removeButton.setAttribute("class", "btn btn-danger");
     removeButton.innerHTML = "Remove";
     removeButton.onclick = onRemoveButtonClicked;
     newColumns[4].appendChild(removeButton);
