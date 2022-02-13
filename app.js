@@ -1,3 +1,7 @@
+const descriptionBox = document.getElementById("description");
+const priorityBox = document.getElementById("priority");
+const dueDateBox = document.getElementById("due-date");
+
 const createButton = document.getElementById("create-button");
 createButton.onclick = onCreateButtonClicked;
 function onCreateButtonClicked() {
@@ -33,6 +37,7 @@ function onCreateButtonClicked() {
     let removeButton = document.createElement("button");
     removeButton.setAttribute("type", "button");
     removeButton.innerHTML = "Remove";
+    removeButton.onclick = onRemoveButtonClicked;
     newColumns[4].appendChild(removeButton);
 
     newColumns.forEach(col => newRow.appendChild(col));
@@ -41,9 +46,10 @@ function onCreateButtonClicked() {
     list.appendChild(newRow); 
 }
 
-const descriptionBox = document.getElementById("description");
-const priorityBox = document.getElementById("priority");
-const dueDateBox = document.getElementById("due-date");
+function onRemoveButtonClicked() {
+    const enclosingRow = this.parentElement.parentElement;
+    enclosingRow.remove();
+}
 
         /*<tr>
             <td>
